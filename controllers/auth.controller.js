@@ -53,7 +53,7 @@ const signin = async (req, res) => {
         const token = jwt.sign({ _id: existingUSer._id }, process.env.SECRET_KEY);
         res.cookie('accessToken', token, { expire: new Date() + 86400000 })
         
-        return res.status(201).send({message:'User Signed-in successfully'})
+        return res.status(201).send({ message: 'User Signed-in successfully' })
       }
       return res.status(401).send({ message: "Invalid Credentials" });
     }
