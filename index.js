@@ -12,10 +12,11 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-    cors: {
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST']
-    }
+  cors: {
+    origin: "https://stately-rugelach-600890.netlify.app",
+    methods: ["GET", "POST"],
+  },
+  secure: true,
 });
 
 // Importing Routes:
