@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
-const {sendEmail} = require("../utils/sendEmail");
+const { sendEmail } = require("../utils/sendEmail");
 
 // Register API:
 const register = async (req, res) => {
@@ -50,29 +50,32 @@ const signin = async (req, res) => {
         existingUSer.hashedPassword
       );
       if (isValidUser) {
-        const token = jwt.sign({ _id: existingUSer._id }, process.env.SECRET_KEY);
-        res.cookie('accessToken', token, { expire: new Date() + 86400000 })
-        
-        return res.status(201).send({ message: 'User Signed-in successfully' })
+        const token = jwt.sign(
+          { _id: existingUSer._id },
+          process.env.SECRET_KEY
+        );
+        res.cookie("accessToken", token, { expire: new Date() + 86400000 });
+
+        return res.status(201).send({ message: "User Signed-in successfully" });
       }
       return res.status(401).send({ message: "Invalid Credentials" });
     }
     res.status(400).send({ message: "User does not exist" });
   } catch (error) {
-    res.status(500).send({ message: 'Internal Server Error', error: error });
+    res.status(500).send({ message: "Internal Server Error", error: error });
     console.log(error);
   }
 };
 
 // Sign-out API:
 
-const signout = async(req, res) => {
+const signout = async (req, res) => {
   try {
     await res.clearCookie("accessToken");
     res.status(500).send({ message: "User Signed out successfully" });
   } catch (error) {
-    res.status(500).send({ message: "Internal Server Error" })
-    console.log(error)
+    res.status(500).send({ message: "Internal Server Error" });
+    console.log(error);
   }
 };
 
