@@ -13,9 +13,9 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://stately-rugelach-600890.netlify.app",
-
-    methods: ["GET", "POST"],
+    origin: "*",
+      
+    methods: ["GET", "POST","PUT","DELETE"],
   },
 });
 
