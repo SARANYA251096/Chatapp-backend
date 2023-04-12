@@ -14,7 +14,6 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:3000",
       "https://stately-rugelach-600890.netlify.app",
     ],
     methods: ["GET", "POST"],
@@ -32,7 +31,9 @@ db();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin:"*"
+}));
 app.get("/", (req, res) => {
   res.send("Welcome!!!");
 });
