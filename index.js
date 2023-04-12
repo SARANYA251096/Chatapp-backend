@@ -13,13 +13,11 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: [
-      "https://stately-rugelach-600890.netlify.app",
-    ],
+    origin: "https://stately-rugelach-600890.netlify.app",
+
     methods: ["GET", "POST"],
   },
 });
-
 
 // Importing Routes:
 const authRoutes = require("./routes/auth.routes");
@@ -31,9 +29,11 @@ db();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin:"*"
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.get("/", (req, res) => {
   res.send("Welcome!!!");
 });
