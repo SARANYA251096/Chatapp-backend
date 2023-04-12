@@ -48,7 +48,7 @@ app.use("/api", userRoutes);
 
 // require('./routes/chat.routes')(io);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 server.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
